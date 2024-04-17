@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Be At Peace</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #444;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        .main-content {
+            background-image: url('kyrie_background.jpg.webp');
+            background-size: cover;
+            background-position: center;
+            height: 200vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .main-content h1 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .main-content p {
+            color: #fff;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 20px;
+            line-height: 1.6;
+        }
+
+        .window-blind {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(black, transparent);
+            pointer-events: none;
+        }
+
+        .schedule-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('sAI.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5;
+        }
+
+
+        .more-details-btn {
+            position: absolute;
+            bottom: 20px;
+            background-color: #4CAF50;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .more-details-btn:hover {
+            background-color: #45a049;
+        }
+
+
+        .poster-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .poster {
+            width: 200px;
+            height: 300px;
+            overflow: hidden;
+            position: absolute;
+            transition: transform 0.5s ease;
+        }
+
+        .poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>To Be At Peace.kyrie Iring</h1>
+    </header>
+
+    <nav>
+        <a href="#schedule">本赛季赛程</a>
+        <a href="#poster">海报</a>
+        <a href="#records">Kyrie的记录</a>
+        <a href="#highlights">集锦</a>
+    </nav>
+
+
+        <h1>本赛季赛程</h1>
+        <p><div id="schedule" class="main-content">
+
+            <div class="schedule-background"></div>
+
+            <div class="window-blind"></div></p>
+
+        <a href="schedule_details.html" class="more-details-btn">更多详情</a>
+    </div>
+
+
+    <div id="poster" class="main-content">
+        <h1>海报</h1>
+        <div class="poster-container">
+            <div class="poster">
+                <img src="6.png" alt="Poster 1">
+            </div>
+            <div class="poster">
+                <img src="屏幕截图 2024-04-14 204445.png" alt="Poster 2">
+            </div>
+            <div class="poster">
+                <img src="1e3f1e44f5034c94afe40cbcd1d21729.jpeg" alt="Poster 3">
+            </div>
+            <div class="poster">
+                <img src="e3b2b4d4a3ff42bf8c969d26b213a788.jpeg" alt="Poster 4">
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const posters = document.querySelectorAll('.poster');
+        let currentIndex = 0;
+
+        function showPoster(index) {
+            posters.forEach((poster, i) => {
+                if (i === index) {
+                    poster.style.transform = 'scale(1)';
+                } else {
+                    poster.style.transform = 'scale(0.8)';
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showPoster(currentIndex);
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const width = window.innerWidth;
+            const percentage = x / width;
+            const newIndex = Math.floor(percentage * posters.length);
+
+            if (newIndex !== currentIndex) {
+                currentIndex = newIndex;
+                showPoster(currentIndex);
+            }
+        });
+    </script>
+</body>
+</html>
