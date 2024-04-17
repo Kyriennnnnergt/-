@@ -127,6 +127,32 @@
             height: 100%;
             object-fit: cover;
         }
+        .records-content {
+    height: 200vh; /* 设置与之前的.main-content相同的高度 */
+}
+
+.records-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+    position: relative;
+}
+
+.record {
+    width: 200px;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.5s ease;
+    z-index: 1;
+}
+
+.record img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
     </style>
 </head>
 <body>
@@ -152,7 +178,7 @@
         <a href="schedule_details.html" class="more-details-btn">更多详情</a>
     </div>
 
-
+    <h2>海报</h2>
     <div id="poster" class="main-content">
         <h1>海报</h1>
         <div class="poster-container">
@@ -202,5 +228,53 @@
             }
         });
     </script>
+
+
+
+
+    <<h3>欧文记录</h3>
+<div id="records" class="main-content records-content">
+    <h1>欧文记录</h1>
+    <div class="records-container">
+        <div class="record">
+            <img src="7e3e6709c93d70cf7ddc36333f0cd80abba12bc0.webp" alt="Record 1">
+        </div>
+        <div class="record">
+            <img src="8ad4b31c8701a18b271e8bb521ff0e022a38feaa.webp" alt="Record 2">
+        </div>
+        <div class="record">
+            <img src="9f510fb30f2442a7f2e313160893a441d31302ea.webp" alt="Record 3">
+        </div>
+    </div>
+</div>
+  <script>
+const records = document.querySelectorAll('.record');
+let currentRecordIndex = 0;
+
+function showRecord(index) {
+    records.forEach((record, i) => {
+        const scale = i === index ? 1 : 0.8;
+        const zIndex = i === index ? 2 : 1;
+        record.style.transform = `scale(${scale})`;
+        record.style.zIndex = zIndex;
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    showRecord(currentRecordIndex);
+});
+
+document.addEventListener('mousemove', (e) => {
+    const y = e.clientY;
+    const height = window.innerHeight;
+    const percentage = y / height;
+    const newIndex = Math.floor(percentage * records.length);
+
+    if (newIndex !== currentRecordIndex) {
+        currentRecordIndex = newIndex;
+        showRecord(currentRecordIndex);
+    }
+});
+</script>
 </body>
 </html>
